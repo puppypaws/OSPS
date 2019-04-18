@@ -10,22 +10,33 @@ return (
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"></link>
 
-        <title>OSPS Registration</title>
+        <title>O$P$ Registration</title>
 
     </head>
 
 
     <body>
 
-        <h1>OSPS Registration</h1>
+        <div class = 'container'>
+            <div class = 'row justify-content-center'>
+                <div class = "row col-lg-12 col-md-12 col-sm-12 justify-content-center">
+                <h1>O$P$ Registration</h1>
+                <br />
+                </div>
 
-        <form method="POST" action="/registration">
+                <form className="add" action="/home" method="POST">
 
-            <input name="username" placeholder="Username"/>
-            <input name="password" placeholder="Password"/>
-            <input type="submit"/>
+                    <input name="username" placeholder="Username"/>
+                    <br />
+                    <input name="password" placeholder="Password"/>
+                    <br />
+                    <input className="btn btn-success" type="submit" value="New user" />
+                    <br />
 
-        </form>
+                </form>
+
+            </div>
+        </div>
 
 </body>
 </html>

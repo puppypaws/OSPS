@@ -11,11 +11,20 @@ CREATE TABLE IF NOT EXISTS users (
 
 CREATE TABLE IF NOT EXISTS payments (
 		id SERIAL PRIMARY KEY,
-		userid INTEGER,
-		payeeid INTEGER,
-		amount FLOAT,
+		payer TEXT,
+		payee TEXT,
+		amount INTEGER,
 		date VARCHAR,
 		completed BOOLEAN
 );
 
-psql -d DATABASE -u USERNAME osps -f tables.sql
+-- psql -d osps -f tables.sql
+
+-- CREATE TABLE IF NOT EXISTS payments (
+-- 		id SERIAL PRIMARY KEY,
+-- 		payerid INTEGER,
+-- 		payeeid INTEGER,
+-- 		amount FLOAT,
+-- 		date VARCHAR,
+-- 		completed BOOLEAN
+-- );

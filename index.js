@@ -27,7 +27,6 @@ pool.on('error', function (err) {
 // Init express app
 const app = express();
 
-
 app.use(express.json());
 app.use(express.urlencoded({
   extended: true
@@ -96,6 +95,26 @@ app.post('/login', (request, response) => {
     }else{
       response.send('User or password was not found!');
     }
+  });
+});
+
+//HOME//
+app.post('/home', (request, response) => {
+  console.log( request.body );
+
+  let query = 'INSERT INTO payments (payer, payee, amount, date) VALUES ($1, $2, $3, $4)';
+
+  const values = [request.body.payer, request.body.payee, request.body.amount, request.body.date];
+
+  pool.query(query, values, (errorObj, result) => {
+
+    if( errorObj ){
+      console.log( "Something went wrong!");
+      console.log( errorObj );
+    }
+
+    console.log("Transaction added");
+    response.redirect('/home');
   });
 });
 
