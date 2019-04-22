@@ -157,22 +157,6 @@ app.delete('/payments/deleteRow/:id', (request,response) => {
   });
 
 })
-//SUMMARY//
-// app.post('/summary', (request, response) => {
-
-//     let query = 'SELECT * FROM payments';
-
-// pool.query(query, values, (errorObj, result) => {
-
-//     if( errorObj ){
-//       console.log( "Something went wrong!");
-//       console.log( errorObj );
-//     }
-
-//     console.log("Leaving summary page");
-//     response.redirect('/home');
-//   });
-// });
 
 //SUMMARY//
 const paymentsInfo = (user,response) => {
@@ -204,6 +188,12 @@ app.get('/registration', (request, response) => {
 });
 
 app.get('/login', (request, response) => {
+    response.render('user/login');
+});
+
+app.get('/logout', (request, response) => {
+    response.cookie('currentUser', null);
+    response.cookie('loggedIn', false);
     response.render('user/login');
 });
 

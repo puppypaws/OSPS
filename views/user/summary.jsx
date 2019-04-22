@@ -27,7 +27,7 @@ console.log(this.props.payments)
         </form>
 
         <form method="POST" action={deleteEntry}>
-        <input type="submit" value="delete"/>
+        <input type="submit" value="🗑️"/>
         </form>
     </td>
 

@@ -26,16 +26,17 @@ return (
                 </div>
 
                 <form className="add" action="/registration" method="POST">
-
                     <input name="username" placeholder="Username"/>
                     <br />
                     <input type="password" input name="password" placeholder="Password"/>
                     <br />
                     <input className="btn btn-success" type="submit" value="Register" />
                     <br />
-
                 </form>
 
+                    <div class = "row col-lg-12 col-md-12 col-sm-12 justify-content-center">
+                    <a class="btn" href="/logout">Logout</a>
+                    </div>
             </div>
         </div>
 
