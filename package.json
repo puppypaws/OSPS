@@ -1,4 +1,11 @@
-{
+  "scripts": {
+    "start": "nodemon index.js"
+  },
+    "engines" : {
+    "node" : "^6.6.0"
+    }
+  },
+  {
   "name": "project2",
   "version": "1.0.0",
   "description": "",
