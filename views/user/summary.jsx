@@ -65,6 +65,9 @@ return(
 </table>
 </div>
 <a href="/home">Add transaction</a>
+                    <div class = "row align-content-right">
+                    <a class="btn" href="/logout">Logout</a>
+                    </div>
 </h1>
 
 </body>
