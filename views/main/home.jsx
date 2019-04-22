@@ -7,7 +7,8 @@ class Home extends React.Component {
     return (
     <html>
         <head>
-            <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"></link>
+<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossOrigin="anonymous"></link>
+<link rel="stylesheet" href="/style.css"></link>
             <title>Add Transaction</title>
         </head>
     <body>
@@ -27,14 +28,19 @@ class Home extends React.Component {
                 <br />
                 <input name="amount" placeholder="Amount($)"/>
                 <br />
+                <input name="description" placeholder="Description"/>
+                <br />
                 <input type="date" name="date" placeholder="Date" />
                 <br />
-
+                <div class = "row justify-content-center">
                 <input className="btn btn-success" type="submit" value="Add Transaction" />
                 <br />
+                </div>
 
             </form>
-            <a href="/summary"> go to summary</a>
+            <div class = "row col-lg-12 col-md-12 col-sm-12 justify-content-center">
+            <a class="btn" href="/summary">Summary</a>
+            </div>
         </div>
     </div>
     </body>

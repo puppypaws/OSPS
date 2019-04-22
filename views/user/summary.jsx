@@ -5,28 +5,33 @@ class Summary extends React.Component {
 console.log(this.props.payments)
     let paymentsInfo = this.props.payments.map(item=>{
 
-        console.log(item.completed
-            )
+                console.log(item.completed)
+                const ticks = item.completed ? "✔":"❌"
+                const putAction=`/payments/changeTick/${item.id}/${ticks}?_method=PUT`
 
-                const ticks = item.completed ? "✅":"❎"
-
-        const putAction=`/payments/changeTick/${item.id}/${ticks}?_method=PUT`
+                console.log(item.id)
+                const deleteEntry = `/payments/deleteRow/${item.id}?_method=DELETE`
 
 
         return (
 <tr>
-    <td>{item.id}</td>
     <td>{item.payer}</td>
     <td>{item.payee}</td>
     <td>{item.amount}</td>
+    <td>{item.description}</td>
     <td>{item.date}</td>
+
     <td>
         <form method="POST" action={putAction}>
         <input type="submit" value={ticks}/>
         </form>
 
+        <form method="POST" action={deleteEntry}>
+        <input type="submit" value="delete"/>
+        </form>
     </td>
-  </tr>
+
+</tr>
             )})
 
 
@@ -44,20 +49,23 @@ return(
 
 <body>
 
-<h1><div>
+<h1>
+<div>
 <table id="paymentSummary">
   <tr>
-    <th>ID</th>
     <th>Payer</th>
     <th>Payee</th>
     <th>Amount</th>
+    <th>Description</th>
     <th>Date</th>
     <th>Status</th>
 
   </tr>
     {paymentsInfo}
 </table>
-            </div></h1>
+</div>
+<a href="/home">Add transaction</a>
+</h1>
 
 </body>
 </html>

@@ -13,7 +13,8 @@ CREATE TABLE IF NOT EXISTS payments (
 		id SERIAL PRIMARY KEY,
 		payer TEXT,
 		payee TEXT,
-		amount INTEGER,
+		amount MONEY,
+		description VARCHAR,
 		date VARCHAR,
 		completed BOOLEAN
 );

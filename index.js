@@ -90,7 +90,7 @@ app.post('/login', (request, response) => {
           response.redirect('/home');
 
         }else{
-          response.redirect('/login');
+          response.render('user/login',{donald:'trump'});
         }
 
     }else{
@@ -102,9 +102,9 @@ app.post('/login', (request, response) => {
 //HOME//
 app.post('/addBill', (request, response) => {
 
-  let query = 'INSERT INTO payments (payer, payee, amount, date) VALUES ($1, $2, $3, $4)';
+  let query = 'INSERT INTO payments (payer, payee, amount, description, date) VALUES ($1, $2, $3, $4, $5)';
 
-  const values = [request.body.payer, request.body.payee, request.body.amount, request.body.date];
+  const values = [request.body.payer, request.body.payee, request.body.amount, request.body.description, request.body.date];
 
   pool.query(query, values, (errorObj, result) => {
 
@@ -118,22 +118,41 @@ app.post('/addBill', (request, response) => {
   });
 });
 
-app.put('/payments/changeTick/:id/:completed', (request, response)=> {
+app.put('/payments/changeTick/:id/:completed', (request, response) => {
 
     console.log(request.params)
 
-    const newData = request.params.completed == '❎' ? true : false;
+    const newData = request.params.completed == '❌' ? true : false;
 
     let query = `UPDATE payments SET completed = ${newData} WHERE id = ${request.params.id}`;
 
     pool.query(query, (errorObj, result) => {
 
     if( errorObj ){
-      console.log( "REEEEE");
+      console.log( "REEEEEAID");
       console.log( errorObj );
     }
 
     console.log("It has been paid");
+    response.redirect('/summary');
+  });
+
+})
+
+app.delete('/payments/deleteRow/:id', (request,response) => {
+
+    console.log(request.params)
+
+    let query = `DELETE FROM payments WHERE id=${request.params.id}`;
+
+    pool.query(query, (errorObj, result) => {
+
+    if( errorObj ){
+      console.log( "REEEEELETED");
+      console.log( errorObj );
+    }
+
+    console.log("Entry has been deleted");
     response.redirect('/summary');
   });
 
