@@ -1,4 +1,5 @@
 var React = require('react');
+// var osps = require('/images/osps.png')
 // var DefaultLayout = require('layouts/default');
 class Home extends React.Component {
 
@@ -18,7 +19,7 @@ class Home extends React.Component {
           <br />
             </div>
 
-            <form className="add" action="/home" method="POST">
+            <form className="add" action="/addBill" method="POST">
 
                 <input name="payer" placeholder="Who owes money?" />
                 <br />
@@ -26,13 +27,14 @@ class Home extends React.Component {
                 <br />
                 <input name="amount" placeholder="Amount($)"/>
                 <br />
-                <input name="date" placeholder="Date" />
+                <input type="date" name="date" placeholder="Date" />
                 <br />
 
                 <input className="btn btn-success" type="submit" value="Add Transaction" />
                 <br />
 
             </form>
+            <a href="/summary"> go to summary</a>
         </div>
     </div>
     </body>

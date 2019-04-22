@@ -10,7 +10,7 @@ return (
 
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous"></link>
 
-        <title>O$P$ Registration</title>
+        <title>OSPS Registration</title>
 
     </head>
 
@@ -24,13 +24,13 @@ return (
                 <br />
                 </div>
 
-                <form className="add" action="/home" method="POST">
+                <form className="add" action="/registration" method="POST">
 
                     <input name="username" placeholder="Username"/>
                     <br />
-                    <input name="password" placeholder="Password"/>
+                    <input type="password" input name="password" placeholder="Password"/>
                     <br />
-                    <input className="btn btn-success" type="submit" value="New user" />
+                    <input className="btn btn-success" type="submit" value="Register" />
                     <br />
 
                 </form>

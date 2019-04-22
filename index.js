@@ -34,7 +34,7 @@ app.use(express.urlencoded({
 
 app.use(methodOverride('_method'));
 
-
+app.use(express.static('public'));
 // Set react-views to be the default view engine
 const reactEngine = require('express-react-views').createEngine();
 app.set('views', __dirname + '/views');
@@ -85,22 +85,22 @@ app.post('/login', (request, response) => {
       // name is correct
         if( sha256(request.body.password) === result.rows[0].password ){
           // password is correct
+          response.cookie('currentUser',request.body.username)
           response.cookie('loggedIn', true);
           response.redirect('/home');
 
         }else{
-          response.send('password was wrong');
+          response.redirect('/login');
         }
 
     }else{
-      response.send('User or password was not found!');
+      response.render('user/login',{donald:'trump'});
     }
   });
 });
 
 //HOME//
-app.post('/home', (request, response) => {
-  console.log( request.body );
+app.post('/addBill', (request, response) => {
 
   let query = 'INSERT INTO payments (payer, payee, amount, date) VALUES ($1, $2, $3, $4)';
 
@@ -118,6 +118,58 @@ app.post('/home', (request, response) => {
   });
 });
 
+app.put('/payments/changeTick/:id/:completed', (request, response)=> {
+
+    console.log(request.params)
+
+    const newData = request.params.completed == '❎' ? true : false;
+
+    let query = `UPDATE payments SET completed = ${newData} WHERE id = ${request.params.id}`;
+
+    pool.query(query, (errorObj, result) => {
+
+    if( errorObj ){
+      console.log( "REEEEE");
+      console.log( errorObj );
+    }
+
+    console.log("It has been paid");
+    response.redirect('/summary');
+  });
+
+})
+//SUMMARY//
+// app.post('/summary', (request, response) => {
+
+//     let query = 'SELECT * FROM payments';
+
+// pool.query(query, values, (errorObj, result) => {
+
+//     if( errorObj ){
+//       console.log( "Something went wrong!");
+//       console.log( errorObj );
+//     }
+
+//     console.log("Leaving summary page");
+//     response.redirect('/home');
+//   });
+// });
+
+//SUMMARY//
+const paymentsInfo = (user,response) => {
+console.log(user)
+    const queryStr = `SELECT * FROM payments WHERE payer = '${user}' OR payee = '${user}' ORDER BY id ASC`
+
+    pool.query(queryStr,(err,res)=>{
+        if(err){
+            console.log("Something went wrong!!!!");
+            console.log(err);
+        }
+
+    response.render('user/summary',{payments:res.rows});
+    })
+}
+
 /**
  * ===================================
  * Routes
@@ -133,9 +185,13 @@ app.get('/registration', (request, response) => {
 });
 
 app.get('/login', (request, response) => {
-  response.render('user/login');
+    response.render('user/login');
 });
 
+app.get('/summary', (request, response) => {
+    console.log(request.cookies)
+    paymentsInfo(request.cookies.currentUser,response);
+});
 
 
 
